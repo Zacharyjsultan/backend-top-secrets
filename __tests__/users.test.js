@@ -12,7 +12,7 @@ describe('/api/v1/users route', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  test('/api/v1/users route', async () => {
+  test('/ registers new user', async () => {
     const res = await request(app).post('/api/v1/users').send(userTest);
     const { email } = userTest;
     expect(res.body).toEqual({
@@ -20,7 +20,14 @@ describe('/api/v1/users route', () => {
       email,
     });
   });
-  afterAll(() => {
-    pool.end();
+  test('/sessions signs in an  user', async () => {
+    await request(app).post('/api/v1/users').send(userTest);
+    const res = await request(app)
+      .post('/api/v1/users/sessions')
+      .send({ email: 'test@test.com', password: '123456' });
+    expect(res.status).toBe(200);
   });
+});
+afterAll(() => {
+  pool.end();
 });

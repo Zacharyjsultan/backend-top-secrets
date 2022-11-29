@@ -1,7 +1,7 @@
 -- Use this file to define your SQL tables
 -- The SQL in this file will be executed when you run `npm run setup-db`
-drop table if Exists users;
-DROP TABLE if exists secrets; 
+drop table if Exists users CASCADE;
+DROP TABLE if exists secrets ; 
 
 create table users (
     id bigint generated always as identity primary key, 
