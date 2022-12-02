@@ -19,7 +19,7 @@ const registerAndLogin = async (userProps = {}) => {
 
 const testUser = {
   email: 'test@test.com',
-  password: '1234password',
+  password: '123456',
 };
 
 describe('/api/v1/secrets routes', () => {

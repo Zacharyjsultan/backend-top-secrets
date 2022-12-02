@@ -8,11 +8,11 @@ const userTest = {
   password: '123456',
 };
 
-describe('/api/v1/users route', () => {
+describe('users route', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  test('/ registers new user', async () => {
+  test('/api/v1/users posts registers new user', async () => {
     const res = await request(app).post('/api/v1/users').send(userTest);
     const { email } = userTest;
     expect(res.body).toEqual({
@@ -20,12 +20,13 @@ describe('/api/v1/users route', () => {
       email,
     });
   });
-  test('/sessions signs in an  user', async () => {
+  test('/sessions post signs in an  user', async () => {
     await request(app).post('/api/v1/users').send(userTest);
     const res = await request(app)
       .post('/api/v1/users/sessions')
       .send({ email: 'test@test.com', password: '123456' });
     expect(res.status).toBe(200);
+    expect(res.body.message).toBe('Successful Login');
   });
 });
 afterAll(() => {
