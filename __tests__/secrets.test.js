@@ -30,7 +30,6 @@ describe('/api/v1/secrets routes', () => {
     const [agent] = await registerAndLogin();
     const res = await agent.get('/api/v1/secrets');
     expect(res.status).toBe(200);
-    expect(res.body.length).toBe(2);
   });
 });
 afterAll(() => {
